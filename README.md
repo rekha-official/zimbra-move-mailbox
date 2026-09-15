@@ -76,7 +76,7 @@ Run it on a server that has access to `zmprov` on the source server (typically e
 
 Before using this in production, it is strongly recommended to fix the following:
 
-1. **Hardcoded credentials** — the line `curl -k -u admin.mbx3:BLjoqo1abuFlyiKlsT33 ...` contains a username & password written directly in the script. **Replace it with variables** (`$SOURCEADMIN:$SOURCEPASSWORD`) and never commit real credentials to a public repository. Consider using environment variables or a separate secrets file (`.env`, excluded from version control).
+1. **Replace it with variables** (`$SOURCEADMIN:$SOURCEPASSWORD`) and never commit real credentials to a public repository. Consider using environment variables or a separate secrets file (`.env`, excluded from version control).
 2. **Default password for temporary accounts** — `DefaultPasswordQAZXSW` is static and weak. Replace it with a strong, randomly generated password per account, or disable login for `.move` accounts during migration.
 3. **`curl -k`** — disables SSL certificate validation. This is generally acceptable for internal migrations, but make sure traffic stays within a trusted network (VPN/private network).
 4. **No error handling** — the script does not stop if a `zmprov`/`curl` command fails (no `set -e` or exit code checks). For large-scale migrations, it's recommended to add logging and status checks at each step so failed accounts can be identified.
